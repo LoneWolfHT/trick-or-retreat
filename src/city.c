@@ -128,7 +128,7 @@ int start_city()
 		sfSprite_setPosition(doorsteps[i], V2F{doorspos[i], WIN_H - 34.0});
 	}
 
-	window_set_info("A/D|Left/Right keys to navigate. Space or Enter to activate/Ask for Candy. W/Up keys to retreat");
+	window_set_info("A/D|Left/Right: Move. Space/Enter: Ask for Candy. W/Up to retreat.\nAsk for candy when standing in doors. Move through right side of screen to continue through city");
 
 	sfSprite_setTexture(background, background_city_png, sfTrue);
 	sfSprite_setScale(background, V2F{WIN_W/960.0, WIN_H/540.0});

@@ -15,7 +15,7 @@ void window_clear();
 
 int window_create()
 {
-	sfVideoMode mode = {WIN_W, WIN_H+32, 32};
+	sfVideoMode mode = {WIN_W, WIN_H+64, 32};
 
     font = sfFont_createFromFile("resources/xolonium/regular.ttf");
     debug = sfText_create();
@@ -32,7 +32,6 @@ int window_create()
 
 	background_png = sfTexture_createFromFile("resources/background.png", NULL);
 	background_city_png = sfTexture_createFromFile("resources/background_city.png", NULL);
-
     window = sfRenderWindow_create(mode, "Trick or Retreat (LD45)", sfClose, NULL);
 
 	return(window != NULL);
