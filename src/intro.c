@@ -108,16 +108,15 @@ int show_intro()
 
 	// UFO shoots beam
 
-	sleep(1);
 	sfSprite_setTexture(ufo, ufo_beaming, sfTrue);
 	intro_refresh();
-	sleep(2);
+	sleep(1);
 
 	// Alien appears
 
 	sfSprite_setPosition(alien, V2F{destination.x+AW+2, destination.y+AW+AW});
 	intro_refresh();
-	sleep(2);
+	sleep(1);
 
 	// Beam Stops
 
@@ -209,7 +208,7 @@ int show_intro()
 
 	delta = delta2 = 0.0;
 	last_time = current_time = clock();
-	while(delta2 <= 4.0)
+	while(delta2 <= 1.7)
 	{
 		current_time = clock();
 		delta += (current_time - last_time)/(CLOCKS_PER_SEC);

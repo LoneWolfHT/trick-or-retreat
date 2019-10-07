@@ -144,6 +144,7 @@ int show_main_menu()
 					--selected;
 					sfSprite_setTexture(buttons[selected], button_down, sfFalse);
 					sfText_setColor(labels[selected], sfRed);
+					sfSound_play(menu_tick);
 				}
 				else if (selected < 1 && (event.key.code == sfKeyDown || event.key.code == sfKeyS))
 				{
@@ -153,12 +154,14 @@ int show_main_menu()
 					++selected;
 					sfSprite_setTexture(buttons[selected], button_down, sfFalse);
 					sfText_setColor(labels[selected], sfRed);
+					sfSound_play(menu_tick);
 				}
 				else if (event.key.code == sfKeySpace || event.key.code == sfKeyEnter)
 				{
 					if (selected == 0)
 					{
 						printf("\nSpace/Enter key pressed. Play selected");
+						sfSound_play(menu_tick);
 						return(OK);
 					}
 					else if (selected == 1)

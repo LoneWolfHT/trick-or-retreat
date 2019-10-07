@@ -17,7 +17,7 @@
 #define AS 200 // Alien Speed
 #define US 777 // UFO Speed
 
-float HS = 95; // Helicopter Speed
+float HS = 90; // Helicopter Speed
 float HFS = 2.1; // Helicopter Fire Speed
 
 #define DW 27 // Door Width
@@ -86,11 +86,24 @@ int start_city()
 
 	hstate = RIGHT_1;
 
+	ALIEN_DEAD = sfFalse;
+
 	if (HS <= AS)
 		HS += 10;
 
 	if (HFS >= 0.5)
 		HFS -= 0.1;
+
+	if (HFS >= 1.0 && HFS < 1.5 && sfMusic_getStatus(city_2) != sfPlaying)
+	{
+		sfMusic_stop(city_1);
+		sfMusic_play(city_2);
+	}
+	else if (HFS >= 0.5 && HFS < 0.7 && sfMusic_getStatus(city_3) != sfPlaying)
+	{
+		sfMusic_stop(city_2);
+		sfMusic_play(city_3);
+	}
 
 	sfTexture *doorstep = sfTexture_createFromFile("resources/doorstep.png", NULL);
 	sfTexture *doorstep_looted = sfTexture_createFromFile("resources/doorstep_looted.png", NULL);
@@ -176,6 +189,7 @@ int start_city()
 					if (sfFloatRect_contains(&alienbox, doorspos[i]+16, WIN_H - 35.0) && sfSprite_getTexture(doorsteps[i]) != doorstep_looted)
 					{
 						sfSprite_setTexture(doorsteps[i], doorstep_looted, sfTrue);
+						sfSound_play(pickup);
 						++score;
 					}
 				}
@@ -443,6 +457,7 @@ void booms_add(double xpos)
 	sfSprite_setTexture(booms[boompos].sprite, boom, sfTrue);
 	sfSprite_setScale(booms[boompos].sprite, V2F{2.5, 1.5});
 	sfSprite_setPosition(booms[boompos++].sprite, V2F{(xpos+(BW/2))-(BW*1.25), APOS.y + 7});
+	sfSound_play(explode);
 }
 
 void bullets_fire(double xpos)
