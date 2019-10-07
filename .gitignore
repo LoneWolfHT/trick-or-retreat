@@ -1,0 +1,7 @@
+.vscode
+bin/libcsfml-graphics.a
+bin/libcsfml-audio.a
+bin/libcsfml-network.a
+bin/libcsfml-system.a
+bin/libcsfml-window.a
+bin/compiling.txt
