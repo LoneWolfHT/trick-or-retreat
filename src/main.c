@@ -67,6 +67,9 @@ int main()
 		sfMusic_stop(intro);
 		sfMusic_play(city_1);
 
+		HS = 90; // Helicopter Speed
+		HFS = 2.1; // Helicopter Fire Speed
+
 		if (start_city() == QUIT)
 		{
 			printf("\nQuit recieved from city. Exiting...");
