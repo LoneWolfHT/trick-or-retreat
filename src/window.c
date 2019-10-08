@@ -45,6 +45,7 @@ void window_clear_event_queue()
 
 void window_refresh()
 {
+	window_clear_event_queue();
 	sfRenderWindow_drawText(window, debug, NULL);
 	sfRenderWindow_drawText(window, info, NULL);
 	sfRenderWindow_display(window);

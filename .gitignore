@@ -6,6 +6,7 @@ bin/libcsfml-system.a
 bin/libcsfml-window.a
 bin/compiling.txt
 bin/ToR Linux/
-bin/Tor Windows.zip
+bin/ToR Windows/
+bin/ToR Windows.zip
 bin/LD45
 bin/ToR Linux.zip
