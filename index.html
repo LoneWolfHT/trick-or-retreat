@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<style media='screen' type='text/css'>
+		@font-face {
+			font-family: xolonium;
+			src: url('assets/xolonium/regular.ttf');
+			font-weight:400;
+			font-weight:normal;
+		}
+	</style>
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<script src="https://cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser-arcade-physics.min.js"></script>
+</head>
+<body>
+	<div style="font-family:xolonium; position:absolute; left:-1000px; visibility:hidden;">.</div>
+	<script>
+		var config = {
+			type: Phaser.AUTO,
+			title: "Trick or Retreat",
+			version: 2.0,
+			scale: {
+				parent: 'body',
+				autoCenter: Phaser.Scale.CENTER_BOTH,
+				width: 900,
+				height: 600,
+			},
+			autoCenter: Phaser.Scale.CENTER_BOTH,
+			render: {pixelArt: true},
+			physics: {
+				default: "arcade",
+				arcade: {
+					gravity: { y: 200 }
+				}
+			},
+			scene: {
+				preload: preload,
+				create: startmainscene,
+			},
+		};
+
+		var game = new Phaser.Game(config);
+
+		function preload()
+		{
+			console.log("Loading Scenes");
+
+			this.load.sceneFile("MainMenu", "scenes/MainMenu.js");
+			this.load.sceneFile("CandyHunt", "scenes/CandyHunt.js");
+		}
+
+		function startmainscene()
+		{
+			console.log("Starting Main scene");
+			//let text = this.add.text(0, 0, "CANDY: " + SCORE, {fontFamily: "xolonium", fontSize: height/25, color: "#ff8500"}).setOrigin(0, 0);
+			this.scene.start("MainMenu");
+		}
+	</script>
+</body>
+</html>
