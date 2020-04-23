@@ -90,15 +90,15 @@ class MainMenu extends Phaser.Scene
 		for (let a = 0; a < 100+random(100); ++a)
 			this.add.image(random(width), random(height), "mainmenu_star").setScale(0.2+(random(2)*0.1)).setRotation(random(3));
 
-		this.add.text(width/2, 16, "Trick Or Retreat", {fontFamily: "xolonium", fontSize: height/10, color: "#ff5b00"}).setOrigin(0.5, 0).setShadow(1, 1, "#ff8500", 1);
+		this.add.text(width/2, 16, "Trick Or Retreat", {fontFamily: "xolonium", fontSize: height/10, color: "#ff8500"}).setOrigin(0.5, 0).setShadow(2, 2, "#ff5b00", 1);
 
 		var playbutton = this.add.sprite(width/2, height/2.2, "mainmenu_button_up").setScale(width/175, height/130).setOrigin(0.5, 0.5).setInteractive();
-		var text = this.add.text(width/2, height/2.2, "Play", {fontFamily: "xolonium", fontSize: height/18.5, color: "#ff8500"}).setOrigin(0.5, 0.6).setShadow(1, 1, "#ff5b00");
+		var text = this.add.text(width/2, height/2.2, "Play", {fontFamily: "xolonium", fontSize: height/18.5, color: "#ff8500"}).setOrigin(0.5, 0.6);
 
 		this.add.text(width/2, 64 + height/10, (NEW_HIGHSCORE ? "New highscore: " : "Highscore: ") + getCookie("highscore"), {
 			fontFamily: "xolonium",
 			fontSize: height/15,
-			color: "#ff8500",
+			color: "#ff5b00",
 			wordWrap: {width: width-64, useAdvancedWrap: true}
 		}).setOrigin(0.5, 1).setShadow(1, 1, "#ff5b00", 1);
 
