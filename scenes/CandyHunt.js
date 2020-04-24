@@ -39,12 +39,12 @@ function reset_values()
 	if (obj)
 	obj.destroy();
 
-	music = pickup_sound = explosion = null;
-	player = helicopter = null;
-	heli_rounds = heli_explosions = null;
+	music = null;
+	pickup_sound = null;
+	explosion = null;
+	player = null;
+	helicopter = null;
 
-	drop_timer = null;
-	hdir = null;
 	hstats = {
 		velocity: 100,
 		fire_rate: 2.0 * 1000,
@@ -52,7 +52,6 @@ function reset_values()
 		fire_limit: 0.4 * 1000,
 	}
 
-	DOORSTEPS = [];
 	SCORE = 0;
 	SCORE_TEXT = null;
 
@@ -64,6 +63,14 @@ function reset_values()
 	STARTED_ENDGAME = false;
 }
 
+function reset_values_soft()
+{
+	DOORSTEPS = [];
+	drop_timer = null;
+	hdir = null;
+	heli_rounds = null;
+	heli_explosions = null;
+}
 class CandyHunt extends Phaser.Scene
 {
 	constructor()
@@ -114,6 +121,8 @@ class CandyHunt extends Phaser.Scene
 	create()
 	{
 		let {width, height} = this.sys.game.canvas;
+
+		reset_values_soft();
 
 		if (DO_AUDIO && !PLAYING_MUSIC)
 		{
@@ -245,7 +254,7 @@ class CandyHunt extends Phaser.Scene
 		this.physics.add.collider(sidewalk, heli_rounds, on_round_hit_sidewalk, null, this);
 		this.physics.add.collider(player, heli_rounds, on_round_hit_player, null, this);
 
-		drop_timer = this.time.addEvent({loop: true, startAt: 0, delay: hstats.fire_rate, callback: drop_round})
+		drop_timer = this.time.addEvent({loop: true, startAt: 0, delay: hstats.fire_rate, callback: drop_round, callbackScope: this})
 	}
 	update(time, delta)
 	{
@@ -281,6 +290,8 @@ class CandyHunt extends Phaser.Scene
 					{
 						++SCORE;
 						SCORE_TEXT.setText("CANDY: " + SCORE);
+
+						console.log(door);
 
 						door.img.setTexture("doorstep_looted");
 
